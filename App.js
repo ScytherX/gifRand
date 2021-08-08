@@ -4,12 +4,16 @@ import { View, TextInput, StyleSheet, FlatList, Image, Button } from 'react-nati
 export default function App() {
   const [gifs, setGifs] = useState([]);
   const [term, updateTerm] = useState('');
-  const getData = async () => {
+
+  async function rand() {
+    const API_KEY = '65jZnv6AH1NT4prsWeg7msk7OYuBhxHO';
     try {
-        const data = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${'65jZnv6AH1NT4prsWeg7msk7OYuBhxHO'}`)
-        return(data);
-    }catch(e){
-        console.error(e)
+      const BASE_URL = 'https://api.giphy.com/v1/gifs/random';
+      const resJson = await fetch(`${BASE_URL}?api_key=${API_KEY}&q=${term}`);
+      const res = await resJson.json();
+      setGifs(res.data);
+    } catch (error) {
+      console.warn(error);
     }
   }
 
@@ -24,6 +28,7 @@ export default function App() {
       console.warn(error);
     }
   }
+
   function onEdit(newTerm) {
     updateTerm(newTerm);
     fetchGifs();
@@ -37,7 +42,7 @@ export default function App() {
         onChangeText={(text) => onEdit(text)}
       />
 
-      <Button title="Random Gif"  onPress={ getData }/>
+      <Button style={styles.view} title="Random Gif"  onPress={ rand }/>
 
       <FlatList
         data={gifs}
@@ -52,6 +57,7 @@ export default function App() {
      
     </View>
   );
+
 }
 const styles = StyleSheet.create({
   view: {
@@ -71,4 +77,10 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     marginBottom: 5
   },
+  Button: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: 'black'
+  }
 });

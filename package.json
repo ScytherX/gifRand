@@ -13,7 +13,9 @@
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-giphy-ui": "^0.2.0",
-    "react-native-paper": "^4.9.2"
+    "react-native-paper": "^4.9.2",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4"
   },
   "devDependencies": {
     "@babel/core": "7.15.0",
