@@ -8,8 +8,8 @@ export default function App() {
   async function rand() {
     const API_KEY = '65jZnv6AH1NT4prsWeg7msk7OYuBhxHO';
     try {
-      const BASE_URL = 'https://api.giphy.com/v1/gifs/random';
-      const resJson = await fetch(`${BASE_URL}?api_key=${API_KEY}&q=${term}`);
+      const Rand_URL = 'http://api.giphy.com/v1/gifs/random';
+      const resJson = await fetch(`${Rand_URL}?api_key=${API_KEY}&q=${term}`);
       const res = await resJson.json();
       setGifs(res.data);
     } catch (error) {
@@ -42,7 +42,7 @@ export default function App() {
         onChangeText={(text) => onEdit(text)}
       />
 
-      <Button style={styles.view} title="Random Gif"  onPress={ rand }/>
+      <Button style={styles.view} title="Random Gif" onPress={rand} />
 
       <FlatList
         data={gifs}
@@ -54,7 +54,7 @@ export default function App() {
           />
         )}
       />
-     
+
     </View>
   );
 
